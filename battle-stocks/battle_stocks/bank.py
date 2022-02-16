@@ -1,22 +1,22 @@
 from battle_stocks.user import User
 
+
 class Bank:
-    def __init__(self, balance=5000):
+    def passit__(self, balance=5000):
+        self.balance = balance
+
+    def deposit():
+        pass 
+
+    def withdraw():
         pass
-    pass
 
+    def get_balance():
+        
+        return
 
-def deposit():
-    pass
-
-def withdraw():
-    pass
-
-def get_balance():
-    pass
-
-def set_starting_balance():
-    pass
+    def set_starting_balance():
+        pass
 
 
 
