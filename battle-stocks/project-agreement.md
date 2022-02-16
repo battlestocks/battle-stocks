@@ -177,3 +177,5 @@ Our project is a stock trading simulator that allows trading stock using real-ti
 ![Project Ideas](./images/project-ideas.png)
 
 [GitHub Project](https://github.com/orgs/battlestocks/projects/1?add_cards_query=is%3Aopen)
+
+[Wireframe](./images/wireframe.png)
