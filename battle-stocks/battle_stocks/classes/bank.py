@@ -1,5 +1,3 @@
-from battle_stocks.classes.user import User
-
 
 class Bank:
     def passit__(self, balance=5000):

@@ -1,17 +1,19 @@
 from battle_stocks.classes.bank import Bank
-from classes.stock import Stock
-# from battle_stocks.classes.portfolio import Portfolio
-# from battle_stocks.classes.user import User
+from battle_stocks.classes.portfolio import Portfolio
+from battle_stocks.classes.user import User
 from battle_stocks.utils.constants import SYMBOL
+
+# BEWARE CIRCULAR IMPORTS 
+## IMPORTS CAN NOT BE IMPORTED EXPORTED BETWEEN THE SAME 2 FILES
 
 class Prompt:
     def __init__(self, stocks = 0):
         self.bank = Bank()
         self.stocks = stocks
-        self.show_stocks = Stock()
         self.status = True
 
-    def stock_greetings():
+    # METHODS NEED SELF (Methods belong to a thing. They belong to the new Prompt object)
+    def stock_greetings(self):
         print('''
         Welcome to Battle Stocks, an app designed to create investment strategies and develop exciting and new ways to learn stock trade!
         ''')
@@ -25,8 +27,6 @@ class Prompt:
             elif user_input == 'y':
                 self.show()
 
-# static method show command  
-    # @staticmethod
     def show(self):
         print('''
             Now that you are intersted, you can either buy or sell stocks!
@@ -40,26 +40,25 @@ class Prompt:
         if user_stock_input == 's':
             self.sell_stock()
 
-# static method for buy stock
-    @staticmethod
-    def buy_stock(self, stock_counter):
-        symbol = SYMBOL
-        while self.status and self.bank.balance > 0:
-            add_stock_list = []
-            # print(f'{symbol}')
-            print('''From the list of stocks, please enter the stock you would like to buy by entering its accompanied ticker.
-            ''')
-            user_input = input('> ')
+# STATIC METHOD DO NOT HAVE SELF: Static methods do not belong to a thing.  They are functions. 
+    # @staticmethod
+    # def buy_stock(stock_counter):
+    #     symbol = SYMBOL
+    #     while self.status and self.bank.balance > 0:
+    #         add_stock_list = []
+    #         # print(f'{symbol}')
+    #         print('''From the list of stocks, please enter the stock you would like to buy by entering its accompanied ticker.
+    #         ''')
+    #         user_input = input('> ')
 
-            # 
-
-
+            
+# STATIC METHOD DO NOT HAVE SELF: Static methods do not belong to a thing.  They are functions. 
 # static method for sell stock       
-    @staticmethod
-    def sell_stock(self, stock_counter):
-        symbol = SYMBOL
-        while self.status and self.bank.balance != 0:
-            pass
+    # @staticmethod
+    # def sell_stock( stock_counter):
+    #     symbol = SYMBOL
+    #     while self.status and self.bank.balance != 0:
+    #         pass
 
 if __name__ == "__main__":
     prompt = Prompt()
