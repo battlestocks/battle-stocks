@@ -1,4 +1,4 @@
-from battle_stocks.classes.user import User
+# from battle_stocks.classes.user import User
 
 
 class Bank:
@@ -6,19 +6,14 @@ class Bank:
         self.balance = balance
 
     def deposit():
-        pass 
+        pass
 
     def withdraw():
         pass
 
     def get_balance():
-        
+
         return
 
     def set_starting_balance():
         pass
-
-
-
-     
-
