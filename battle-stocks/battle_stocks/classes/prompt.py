@@ -15,7 +15,7 @@ class Prompt:
     def stock_greetings():
         print(
             '''
-Welcome to Battle Stocks, an app designed to create investment strategies and develop exciting and new ways to learn stock trade!
+Welcome to Battle Stocks, an app designed to create investment strategies and acquire knowledge of stock trade!
             ''')
 
     @staticmethod
@@ -60,6 +60,7 @@ To quit please enter: (q)uit
     @staticmethod
     def buy_stock():
         symbol = SYMBOL
+        # print the list of stocks and tickers
         print(
             '''
 From the list of stocks, please enter the stock you would like to buy by entering its accompanied ticker.
@@ -83,10 +84,11 @@ Congratulations! You can purchase {symbol} stock. Would you like to purchase it?
         if user_input == 'n':
             print(
                 '''
-Please enter another stock you would like to purchase or enter (q)uit.
+Please enter another stock you would like to purchase or enter (q)uit to go back to the main menu.
                 ''')
         # else the user can take out money from the bank and use it to purchase the stock.
-        # the user then can store stocks and get the info of its name, ticker, price.
+        # the user then can store stocks in portfolio and get the info of its name, ticker, price.
+        # the user can also have the option to print out a graph of the stock portfolio
         # or the user can type in quit and it will return to show()
 
 
@@ -94,13 +96,13 @@ Please enter another stock you would like to purchase or enter (q)uit.
 
     @staticmethod
     def sell_stock():
-        # first print out the tickers of the stocks that they have stored.
+        # first print out the tickers of the stocks in portfolio.
         print(
             '''
 Which stock would you like to sell?''')
         user_input = input('> ')
         if user_input == SYMBOL:
-            # take that stock from the stored stocks and sell it.
+            # take that stock from portfolio and sell it.
             # add money to the bank
             print(
                 f'''
@@ -111,6 +113,7 @@ Which stock would you like to sell?''')
         if continue_input == 'n':
             Prompt.show()
         elif continue_input == 'y':
+            #option to plot the current stock portfolio
             Prompt.sell_stock()
 
 if __name__ == "__main__":
