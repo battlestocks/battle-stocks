@@ -2,15 +2,11 @@ from battle_stocks.classes.bank import Bank
 from battle_stocks.classes.stock import Stock
 from battle_stocks.utils.constants import SYMBOL
 from battle_stocks.classes.input_validation import InputValidation
+from battle_stocks.classes.user import User
 import sys
 
 
 class Prompt:
-    def __init__(self, stocks=0):
-        self.bank = Bank()
-        self.stocks = stocks
-        # self.show_stocks = Stock()
-
     @staticmethod
     def stock_greetings():
         print(
@@ -25,69 +21,53 @@ Thank you for stopping by!''')
         sys.exit()
 
     @staticmethod
+    def collect_user_name():
+        user_name = input('Please enter a user name to get started.\n> ')
+        print(f'\nWelcome {user_name}!'
+        )
+        return user_name
+
+    @staticmethod
     def start_investing():
         print(
             '''
-Please enter (y)es to start investing or (n)o to decline''')
+\nPlease enter (y)es to start investing or (n)o to decline''')
         user_input = input('> ')
-        validated = InputValidation.start_or_quit(user_input)
+        validated = InputValidation.validate_start_quit(user_input)
         if validated == 'N':
-            print(
-                '''
-Too Bad! Lets invest soon!''')
             Prompt.quit()
         elif validated == 'Y':
-            Prompt.show()
+            return Prompt.buy_sell_or_quit()
 
-# static method show command
     @staticmethod
-    def show():
-        print(
-            '''
-Now that you are intersted, you can either buy or sell stocks!
-
+    def buy_sell_or_quit():
+        buy_sell_quit = input('''
 To buy stocks please enter: (b)uy
 To sell stocks please enter: (s)ell
 To quit please enter: (q)uit
-            ''')
-        # user_stock_input = input('> ')
-        # if user_stock_input == 'b':
-        #     self.buy_stock()
-        # if user_stock_input == 's':
-        #     self.sell_stock()
+> ''')
+        return InputValidation.validate_buy_sell_quit(buy_sell_quit)
 
 # static method for buy stock
     @staticmethod
-    def buy_stock():
-        symbol = SYMBOL
-        # print the list of stocks and tickers
-        print(
-            '''
-From the list of stocks, please enter the stock you would like to buy by entering its accompanied ticker.
-                ''')
+    def buy_stock_prompt():
+        stock_list = []
+        for stock in SYMBOL:
+            stock_list.append(stock)
+        company_name = input(f'\nThis is the current list of stocks that are avaiable for purchase: {stock_list}.\nFrom this list, please enter the stock you would like to buy.\n> ')
+        # validate company_name
+        shares = input(f'How many shares of {company_name} would you like to purchase?\n> ')
+        # validae shares
+        return [company_name, SYMBOL[company_name], shares]
         # function for checking stock price is less than the balance
     # if the stock price is higher:
-        print(
-            '''
-Unfortunately, you currently do not have enough money to buy a stock. Please enter another ticker. If you would like to quit please enter q.
-                ''')
-        user_input = input('< ')
-        if user_input == 'q':
-            quit()
-    # if the stock price is lower:
-        print(
-            f'''
-Congratulations! You can purchase {symbol} stock. Would you like to purchase it?
-                ''')
-    # yes or no
-        user_input = input('< ')
-        if user_input == 'n':
-            print(
-                '''
-Please enter another stock you would like to purchase or enter (q)uit to go back to the main menu.
-                ''')
-        # else the user can take out money from the bank and use it to purchase the stock.
-        # the user then can store stocks in portfolio and get the info of its name, ticker, price.
+    @staticmethod
+    def continue_or_print():
+        user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)ontinue or enter (q)uit to exit.\n> ')
+        if user_input == 'c':
+            return Prompt.buy_sell_or_quit()
+        else:
+            Prompt.quit()
         # the user can also have the option to print out a graph of the stock portfolio
         # or the user can type in quit and it will return to show()
 
@@ -95,15 +75,13 @@ Please enter another stock you would like to purchase or enter (q)uit to go back
 # static method for sell stock
 
     @staticmethod
-    def sell_stock():
+    def sell_stock_prompt():
         # first print out the tickers of the stocks in portfolio.
-        print(
-            '''
-Which stock would you like to sell?''')
-        user_input = input('> ')
+        user_input = input('Which stock would you like to sell?')
         if user_input == SYMBOL:
             # take that stock from portfolio and sell it.
             # add money to the bank
+            # Bank.deposit()
             print(
                 f'''
 {SYMBOL} has successfully been sold! Would you like to sell another?  
@@ -115,9 +93,4 @@ Which stock would you like to sell?''')
         elif continue_input == 'y':
             #option to plot the current stock portfolio
             Prompt.sell_stock()
-
-if __name__ == "__main__":
-    Prompt.stock_greetings()
-    Prompt.start_investing()
-    # prompt.buy_stock()
-    # prompt.sell_stock()
+    

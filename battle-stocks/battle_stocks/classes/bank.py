@@ -2,7 +2,7 @@
 
 
 class Bank:
-    def passit__(self, balance=5000):
+    def __init__(self, balance=5000):
         self.balance = balance
 
     def deposit():

@@ -1,8 +1,8 @@
 class Portfolio:
     def __init__(self):
-        stocks = []
-        past_stocks = []
-        self.current_value = current_value
+        self.stocks = []
+        self.past_stocks = []
+        # self.current_value = current_value
 
     def add_stock(self):
 

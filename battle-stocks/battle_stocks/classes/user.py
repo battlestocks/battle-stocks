@@ -3,13 +3,11 @@ from battle_stocks.classes.portfolio import Portfolio
 
 
 class User:
-    def __init__(self, name, date):
+    def __init__(self, name):
         self.name = name
-        self.date = date
-        user_bank = Bank()
-        user_portfolio = Portfolio()
-        
-        pass
+        self.bank = Bank()
+        self.portfolio = Portfolio()
+        self.holding_stock_names = []
 
     def lookup_stock():
         pass

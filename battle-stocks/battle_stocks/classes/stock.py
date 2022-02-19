@@ -8,11 +8,12 @@ class Stock:
     def __init__(self, name, symbol, created=None, price=None):
         self.name = name
         self.symbol = symbol
-        self.purchased_price = self.set_initial_purchased_price()
-        self.purchased_date =  created or datetime.datetime.now().date()
-        self.current_price = get_current_stock_price(self.symbol)
+        self.total_shares = 0
+        self.transactions = []
+        # self.purchased_price = self.set_initial_purchased_price()
+        # self.purchased_date =  created or datetime.datetime.now().date()
+        # self.current_price = get_current_stock_price(self.symbol)
         
-
     def set_initial_purchased_price(self):
         current = get_current_stock_price(self.symbol)
         return current['price']
