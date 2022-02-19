@@ -6,7 +6,7 @@ class User:
     def __init__(self, name, date):
         self.name = name
         self.date = date
-        user_bank = Bank()
+        bank_user = Bank()
         user_portfolio = Portfolio()
         
         pass
