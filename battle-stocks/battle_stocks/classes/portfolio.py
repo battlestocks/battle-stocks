@@ -36,7 +36,7 @@ class Portfolio:
 
 # if __name__ == "__main__":
 #     portfo = Portfolio()
-#     added = portfo.add_stock('APL')
-#     removed = portfo.remove_stock('APL')
+#     added = portfo.add_stock('AAPL')
+#     removed = portfo.remove_stock('AAPL')
 #     print(added)
 #     print(removed)
