@@ -14,5 +14,3 @@ class Bank:
     def get_balance(self):
         if self.balance >= 0:
             return self.balance
-        elif self.balance < 0:
-            return self.balance
