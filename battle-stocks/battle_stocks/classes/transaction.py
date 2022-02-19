@@ -1,21 +1,23 @@
 import datetime
-from battle_stocks.utils.scraping import get_current_stock_price
+from battle_stocks.utils.scraping import get_current_stock_price, get_historical_stock_price
 from battle_stocks.utils.constants import SYMBOL
+from battle_stocks.classes.plot import Plot
 
 
 class Transaction:
   def __init__(self, symbol, qty):
     self.symbol = symbol
     self.qty = qty
-    self.purchased_price = get_current_stock_price(symbol)
+    self.original_qty = qty
+    self.purchased_price = self.get_current_price()
     self.purchased_date = datetime.datetime.now().date()
     self.price_history = {}
 
   def sell_stock(self, qty):
-      current_price = float(get_current_stock_price(self.symbol))
-      self.qty -= qty
-      self.sold_date = datetime.datetime.now().date()
-      return current_price * qty
+    current_price = float(get_current_stock_price(self.symbol))
+    self.qty -= qty
+    self.sold_date = datetime.datetime.now().date()
+    return current_price * qty
 
   def get_current_price(self):
     current_price = get_current_stock_price(self.symbol)
@@ -29,24 +31,29 @@ class Transaction:
     return current_price * self.qty
 
   def get_price_history(self):
-    # Need function to get price history data { date: price }
-    # data = float(get_price_history(self.symbol))
-    # self.price_history = data
-    d1 = datetime.date.fromisoformat('2022-02-13')
-    d2 = datetime.date.fromisoformat('2022-02-14')
-    d3 = datetime.date.fromisoformat('2022-02-15')
-    d4 = datetime.date.fromisoformat('2022-02-16')
-    d5 = datetime.date.fromisoformat('2022-02-17')
-    self.price_history = { d1: 50, d2: 52, d3: 55, d4: 60, d5: 62 }
+    data = get_historical_stock_price(self.symbol)
+    data = data[1:]
+    hist_list = []
+    for i in data:
+      if len(i) < 5:
+        continue
+      date = i[0].replace(',', '')
+      date = datetime.datetime.strptime(date, '%b %d %Y')
+      date = date.date()
+      closing_price = float(i[4])
+      hist_list.append((date, closing_price))
+    hist_list.reverse()
+    self.price_history = hist_list
+    return hist_list
 
-  def get_price_history2(self):
-    d1 = datetime.date.fromisoformat('2022-02-13')
-    d2 = datetime.date.fromisoformat('2022-02-14')
-    d3 = datetime.date.fromisoformat('2022-02-15')
-    d4 = datetime.date.fromisoformat('2022-02-16')
-    d5 = datetime.date.fromisoformat('2022-02-17')
-    self.price_history = { d1: 77, d2: 88, d3: 80, d4: 76, d5: 79 }
- 
+  def plot(self):
+    Plot.plot_single_stock(f'Chart for {self.symbol}', self)
+
+  def original_transaction_value(self):
+    return self.purchased_price * self.original_qty
+
+
+
   @staticmethod
   def buy_stock(symbol, qty):
     # Returns a Transaction instance
