@@ -7,7 +7,6 @@ class User:
         self.name = name
         self.bank = Bank()
         self.portfolio = Portfolio()
-        self.holding_stock_names = []
 
     def show_current_portfolio(self):
         holding_stocks = {}

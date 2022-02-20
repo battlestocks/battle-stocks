@@ -2,6 +2,7 @@ from battle_stocks.classes.prompt import Prompt
 from battle_stocks.classes.stock import Stock
 from battle_stocks.classes.user import User
 from battle_stocks.classes.transaction import Transaction
+from battle_stocks.utils.validate_transaction import validate_transaction
 from battle_stocks.utils.scraping import get_current_stock_price
 
 
@@ -17,10 +18,11 @@ def main():
             stock_name = buy_stock_info[0]
             stock_symbol = buy_stock_info[1]
             shares = buy_stock_info[2]
-            if float(get_current_stock_price(stock_symbol)) * float(shares) > user.bank.balance:
+            transact = Transaction(stock_symbol, shares, 'buy')
+
+            if validate_transaction(user, transact) == False:
                 print('Unfortunately, you currently do not have enough money to purchase your desired amount of shares. Please enter another amount.')
             else:
-                transact = Transaction(stock_symbol, shares, 'buy')
                 if stock_name in user.holding_stock_names:
                     # find the exsiting stock and update the shares
                     for stock in user.portfolio.stocks:
