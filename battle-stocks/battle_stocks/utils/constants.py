@@ -14,3 +14,8 @@ SYMBOL = {
     'MICROSOFT': 'MSFT',
     'FACEBOOK': 'FB',
 }
+
+class STOCKS:
+    APPLE = 'AAPL'
+    MICROSOFT = 'MSFT'
+    FACEBOOK = 'FB'
