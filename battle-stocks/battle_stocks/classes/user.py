@@ -19,7 +19,6 @@ class User:
         pass
 
     def get_portfolio_balance(self): 
-        
          pass
         
     def get_current_bank_balance():
