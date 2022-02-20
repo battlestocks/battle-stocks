@@ -20,8 +20,7 @@ def main():
             if float(get_current_stock_price(stock_symbol)) * float(shares) > user.bank.balance:
                 print('Unfortunately, you currently do not have enough money to purchase your desired amount of shares. Please enter another amount.')
             else:
-                # To do: subtract the amount from bank balance
-                transact = Transaction(stock_symbol, shares)
+                transact = Transaction(stock_symbol, shares, 'buy')
                 if stock_name in user.holding_stock_names:
                     # find the exsiting stock and update the shares
                     for stock in user.portfolio.stocks:
@@ -33,8 +32,11 @@ def main():
                     new_stock.total_shares += float(shares)
                     new_stock.transactions.append(transact)
                     user.holding_stock_names.append(stock_name)
-                    # user.portfolio.add_stock(new_stock)
-                    user.portfolio.stocks.append(new_stock)
+                    user.portfolio.add_stock(new_stock)
+                    # To do: test plot_portfolio method
+                    # user.portfolio.plot_portfolio()    
+                user.bank.balance -= float(get_current_stock_price(stock_symbol)) * float(shares)
+                print(f'Congratulations! You have successfully purchased {shares} shares of {stock_name} stock. Your current account balance is ${round(user.bank.balance, 2)}')
                 ################# debugging purpose
                 # print(user.portfolio.stocks[0].name, user.portfolio.stocks[0].total_shares)
                 # for stock in user.portfolio.stocks:
@@ -42,11 +44,20 @@ def main():
                 #         print(transct.symbol, transct.qty)
                 ##################
         if validated_b_s_q == 'S':
-            # Prompt.sell_stock_prompt()
-            pass
+            sell_stock_info = Prompt.sell_stock_prompt(user)
+            stock_name = sell_stock_info[0]
+            stock_symbol = sell_stock_info[1]
+            shares = sell_stock_info[2]
+            transact = Transaction(stock_symbol, shares, 'sell')
+            for stock in user.portfolio.stocks:
+                if stock.name == stock_name:
+                    stock.total_shares -= float(shares)
+                    stock.transactions.append(transact)
+            user.bank.balance += float(get_current_stock_price(stock_symbol)) * float(shares)
+            print(f'Congratulations! You have successfully sold {shares} shares of {stock_name} stock. Your current account balance is ${round(user.bank.balance, 2)}')
         if validated_b_s_q == 'Q':
             Prompt.quit()
-        validated_b_s_q = Prompt.continue_or_print()
+        validated_b_s_q = Prompt.continue_or_quit()
 
 if __name__ == "__main__":
     main()
