@@ -1,5 +1,6 @@
 from battle_stocks.utils.constants import SYMBOL
 from battle_stocks.classes.input_validation import InputValidation
+from battle_stocks.classes.user import User
 import sys
 
 
@@ -59,6 +60,7 @@ To quit please enter: (q)uit
         # function for checking stock price is less than the balance
     # if the stock price is higher:
     @staticmethod
+
     def continue_or_quit():
         user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)ontinue or enter (q)uit to exit.\n> ')
         if user_input == 'c':
@@ -74,3 +76,4 @@ To quit please enter: (q)uit
         shares = input(f'How many shares of {company_name} would you like to sell?\n> ')
         # Add input validations for company_name and shares
         return [company_name, SYMBOL[company_name], shares]
+
