@@ -1,19 +1,19 @@
+
 # from battle_stocks.classes.user import User
 
-
 class Bank:
-    def passit__(self, balance=5000):
-        self.balance = balance
+    def __init__(self, balance=10000):
+        self.balance = balance 
+        
+    def deposit(self, amount):
+        self.balance += amount
 
-    def deposit():
-        pass
+    def withdraw(self, amount):
+        if self.balance < amount:
+            print('Not enough money, try another amount!')
+        else:
+            self.balance -= amount
 
-    def withdraw():
-        pass
+    def get_balance(self):
+        return round(self.balance, 2)
 
-    def get_balance():
-
-        return
-
-    def set_starting_balance():
-        pass
