@@ -1,5 +1,3 @@
-from battle_stocks.classes.bank import Bank
-from battle_stocks.classes.stock import Stock
 from battle_stocks.utils.constants import SYMBOL
 from battle_stocks.classes.input_validation import InputValidation
 from battle_stocks.classes.user import User
@@ -62,35 +60,20 @@ To quit please enter: (q)uit
         # function for checking stock price is less than the balance
     # if the stock price is higher:
     @staticmethod
-    def continue_or_print():
+
+    def continue_or_quit():
         user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)ontinue or enter (q)uit to exit.\n> ')
         if user_input == 'c':
             return Prompt.buy_sell_or_quit()
         else:
             Prompt.quit()
         # the user can also have the option to print out a graph of the stock portfolio
-        # or the user can type in quit and it will return to show()
-
-
-# static method for sell stock
 
     @staticmethod
-    def sell_stock_prompt():
-        # first print out the tickers of the stocks in portfolio.
-        user_input = input('Which stock would you like to sell?')
-        if user_input == SYMBOL:
-            # take that stock from portfolio and sell it.
-            # add money to the bank
-            # Bank.deposit()
-            print(
-                f'''
-{SYMBOL} has successfully been sold! Would you like to sell another?  
-                '''
-            )
-        continue_input = input('> ')
-        if continue_input == 'n':
-            Prompt.show()
-        elif continue_input == 'y':
-            #option to plot the current stock portfolio
-            Prompt.sell_stock()
-    
+    def sell_stock_prompt(user):
+        print(f'This is your current positions:\n{user.show_current_portfolio()}')
+        company_name = input('Which stock would you like to sell?\n> ')
+        shares = input(f'How many shares of {company_name} would you like to sell?\n> ')
+        # Add input validations for company_name and shares
+        return [company_name, SYMBOL[company_name], shares]
+
