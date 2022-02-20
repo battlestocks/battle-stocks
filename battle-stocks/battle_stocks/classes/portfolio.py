@@ -1,4 +1,3 @@
-
 from battle_stocks.classes.transaction import Transaction
 from battle_stocks.classes.stock import get_current_stock_price
 from battle_stocks.classes.plot import Plot

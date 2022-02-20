@@ -3,13 +3,17 @@ from battle_stocks.classes.portfolio import Portfolio
 
 
 class User:
-    def __init__(self, name, date):
+    def __init__(self, name):
         self.name = name
-        self.date = date
-        user_bank = Bank()
-        user_portfolio = Portfolio()
-        
-        pass
+        self.bank = Bank()
+        self.portfolio = Portfolio()
+        self.holding_stock_names = []
+
+    def show_current_portfolio(self):
+        holding_stocks = {}
+        for stock in self.portfolio.stocks:
+            holding_stocks[stock.name] = stock.total_shares
+        return holding_stocks
 
     def lookup_stock():
         pass
