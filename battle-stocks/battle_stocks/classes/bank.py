@@ -1,3 +1,6 @@
+
+# from battle_stocks.classes.user import User
+
 class Bank:
     def __init__(self, balance=10000):
         self.balance = balance 
@@ -13,3 +16,4 @@ class Bank:
 
     def get_balance(self):
         return round(self.balance, 2)
+
