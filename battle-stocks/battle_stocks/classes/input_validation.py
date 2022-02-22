@@ -1,4 +1,8 @@
+from battle_stocks.utils.constants import SYMBOL
+
+
 class InputValidation:
+
     @staticmethod
     def validate_start_quit(user_input):
         validated = user_input
@@ -20,3 +24,28 @@ To quit please enter: (q)uit
 
 > ''')
         return validated.upper()
+
+    @staticmethod
+    def validate_user_name(user_input, prompt):
+        validated = user_input
+        while validated == '':
+            validated = input(prompt)
+        return validated.upper()
+
+    @staticmethod
+    def validate_company_name(user_input, prompt):
+        validated = user_input
+        while validated.upper() not in SYMBOL:
+            validated = input(f'{validated.upper()} is not available. {prompt}')
+        return validated.upper()
+
+    @staticmethod
+    def validate_shares(user_input, prompt):
+        validated = user_input
+        while True:
+            try:
+                validated = float(validated)
+                break
+            except:
+                validated = input(f'Please enter number for shares. {prompt}')
+        return validated
