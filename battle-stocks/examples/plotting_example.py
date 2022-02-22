@@ -17,4 +17,3 @@ FluffyKins.portfolio.add_stock(book_face)
 
 ## Plot portfolio
 FluffyKins.portfolio.plot_portfolio()
-
