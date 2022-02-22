@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from battle_stocks.classes.transaction import Transaction
 from battle_stocks.utils.constants import SYMBOL
 
 
@@ -37,11 +36,15 @@ class Plot:
   size = Size()
 
   @staticmethod
-  def plot_single_stock(name, transaction, size=(6,6), line_color=colors.green, face_color=colors.grey, edge_color=colors.black, marker=markers.small, line_style=line_styles.dashdot):
-    x = list(transaction.price_history.keys())
-    x = [date.strftime('%m-%d-%Y') for date in x ]
-    y = list(transaction.price_history.values())
-    
+  def plot_single_stock(name, transaction, size=size.medium, line_color=colors.green, face_color=colors.grey, edge_color=colors.black, marker=markers.small, line_style=line_styles.dashdot):
+    x = [date[0] for date in transaction.price_history]
+    y = [price[1] for price in transaction.price_history]
+    x_ticks = []
+    y_ticks = [int(price) for price in y]
+    for i in range(len(x)):
+      if i % 5 == 0:
+        x_ticks.append(x[i])
+
     # Figure settings
     fig = plt.figure(
       figsize=size, 
@@ -62,13 +65,16 @@ class Plot:
     ax.set_title(f'Stock price for {name}')
     ax.set_xlabel('Date')
     ax.set_ylabel('Stock Price')
-    ax.set_xticks(x)
-    ax.set_yticks(y)
+    ax.set_xticks(x_ticks)
+    ax.set_yticks(y_ticks)
+    tick_size = 6
+    rotation_x = 45
+    plt.xticks(rotation=rotation_x, size=tick_size)
+    plt.yticks(size=tick_size)
     plt.show()
 
-
   @staticmethod
-  def plot_portfolio(portfolio, size=(15,8), line_color=colors.green, face_color=colors.grey, edge_color=colors.black, marker=markers.small, line_style=line_styles.dashdot):
+  def plot_portfolio(portfolio, size=size.large, line_color=colors.green, face_color=colors.grey, edge_color=colors.black, marker=markers.small, line_style=line_styles.dashdot):
     # Figure settings
     fig = plt.figure(
       figsize=size, 
@@ -81,12 +87,9 @@ class Plot:
     ax.set_xlabel('Dates')
     ax.set_ylabel('Stock Price')
     for stock in portfolio:
-      # Set X values: dates
-      x = list(stock.price_history.keys())
-      x = [date.strftime('%m-%d-%Y') for date in x ]
-
-      # Set Y values: prices
-      y = list(stock.price_history.values())
+      stock.get_price_history()
+      x = [date[0] for date in stock.price_history]
+      y = [price[1] for price in stock.price_history]
 
       ax.plot( x, y,
         color = line_color, 
