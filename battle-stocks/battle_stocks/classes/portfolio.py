@@ -16,7 +16,6 @@ class Portfolio:
             self.stocks.append(transaction)
             self.held_stocks.append(transaction.name)
             self.stock_shares[transaction.name] = transaction.qty
-            print(self.stock_shares)
 
     def sell_shares(self, name, symbol, qty):
         shares = int(qty)
