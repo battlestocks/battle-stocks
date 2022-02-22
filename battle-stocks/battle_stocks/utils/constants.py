@@ -1,13 +1,7 @@
-# TODAY = date
+from sp_500_dict import SP_500
 
-# BASE_YAHOO_URL =
-
-# TICKERS = []
-
-# PORTFOLIO = {}
-
-# START_MONEY = 5000 
-
+STARTING_BANK = 10000 
+SP_500 = SP_500
 
 SYMBOL = {
     'APPLE': 'AAPL',

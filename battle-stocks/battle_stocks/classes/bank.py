@@ -1,8 +1,9 @@
+from lib2to3.pgen2.token import BACKQUOTE
 
-# from battle_stocks.classes.user import User
 
+from battle_stocks.utils.constants import STARTING_BANK
 class Bank:
-    def __init__(self, balance=10000):
+    def __init__(self, balance=STARTING_BANK):
         self.balance = balance 
         
     def deposit(self, amount):

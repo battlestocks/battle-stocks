@@ -1,6 +1,4 @@
-from unicodedata import name
 import pandas as pd
-from types import SimpleNamespace
 
 url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
 
@@ -9,9 +7,11 @@ df = tables[0]
 df = df[['Symbol', 'Security']]
 df_list = df.to_dict(orient='records')
 
-class ClassObj:
-  def __init__(self, list):
-    self.stocks = SimpleNamespace()
-    for i in df_list:
-      self.stocks
-SP_500 = ClassObj(df_list)
+symbol = df['Symbol']
+company = df['Security']
+
+with open('./battle_stocks/utils/sp_500_dict.py', 'w') as f:
+  f.write('SP_500 = {\n')
+  for i in range(len(symbol)):
+    f.write(f'"{symbol[i]}" : "{company[i]}",\n')
+  f.write('}')
