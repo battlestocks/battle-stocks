@@ -1,6 +1,5 @@
 from battle_stocks.utils.constants import SYMBOL
 from battle_stocks.classes.input_validation import InputValidation
-from battle_stocks.classes.user import User
 import sys
 
 
@@ -20,10 +19,12 @@ Thank you for stopping by!''')
 
     @staticmethod
     def collect_user_name():
-        user_name = input('Please enter a user name to get started.\n> ')
-        print(f'\nWelcome {user_name}!'
+        prompt = 'Please enter a user name to get started.\n> '
+        user_name = input(prompt)
+        validated_user_name = InputValidation.validate_user_name(user_name, prompt)
+        print(f'\nWelcome {validated_user_name}!'
         )
-        return user_name
+        return validated_user_name
 
     @staticmethod
     def start_investing():
@@ -46,34 +47,34 @@ To quit please enter: (q)uit
 > ''')
         return InputValidation.validate_buy_sell_quit(buy_sell_quit)
 
-# static method for buy stock
     @staticmethod
     def buy_stock_prompt():
         stock_list = []
         for stock in SYMBOL:
             stock_list.append(stock)
-        company_name = input(f'\nThis is the current list of stocks that are avaiable for purchase: {stock_list}.\nFrom this list, please enter the stock you would like to buy.\n> ')
-        # validate company_name
-        shares = input(f'How many shares of {company_name} would you like to purchase?\n> ')
-        # validae shares
-        return [company_name, SYMBOL[company_name], shares]
-        # function for checking stock price is less than the balance
-    # if the stock price is higher:
-    @staticmethod
+        company_name_prompt = f'\nThis is the current list of stocks that are avaiable for purchase: {stock_list}.\nFrom this list, please enter the stock you would like to buy.\n> '
+        company_name = input(company_name_prompt)
+        validated_company_name = InputValidation.validate_company_name(company_name, company_name_prompt)
+        shares_prompt = f'How many shares of {validated_company_name} would you like to purchase?\n> '
+        shares = input(shares_prompt)
+        validated_shares = InputValidation.validate_shares(shares, shares_prompt)
+        return [validated_company_name, SYMBOL[validated_company_name], validated_shares]
 
+    @staticmethod
     def continue_or_quit():
         user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)ontinue or enter (q)uit to exit.\n> ')
         if user_input == 'c':
             return Prompt.buy_sell_or_quit()
         else:
             Prompt.quit()
-        # the user can also have the option to print out a graph of the stock portfolio
 
     @staticmethod
     def sell_stock_prompt(user):
-        print(f'This is your current positions:\n{user.show_current_portfolio()}')
-        company_name = input('Which stock would you like to sell?\n> ')
-        shares = input(f'How many shares of {company_name} would you like to sell?\n> ')
-        # Add input validations for company_name and shares
-        return [company_name, SYMBOL[company_name], shares]
+        company_name_prompt = f'This is your current positions:\n{user.show_current_portfolio()}\nWhich stock would you like to sell?\n> '
+        company_name = input(company_name_prompt)
+        validated_company_name = InputValidation.validate_company_name(company_name, company_name_prompt)
+        shares_prompt = f'How many shares of {company_name} would you like to sell?\n> '
+        shares = input(shares_prompt)
+        validated_shares = InputValidation.validate_shares(shares, shares_prompt)
+        return [validated_company_name, SYMBOL[validated_company_name], validated_shares]
 
