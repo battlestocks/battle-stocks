@@ -8,17 +8,18 @@ class Transaction:
   def __init__(self, name, symbol, qty, type):
     self.name = name
     self.symbol = symbol
-    self.qty = qty
+    self.qty = int(qty)
     self.type = type
     self.purchased_price = self.get_current_price()
     self.purchased_date = datetime.datetime.now().date()
     self.price_history = []
 
-  # def sell_stock(self, qty):
-  #     current_price = float(get_current_stock_price(self.symbol))
-  #     self.qty -= qty
-  #     self.sold_date = datetime.datetime.now().date()
-  #     return current_price * qty
+  def sell_stock(self, qty):
+      current_price = float(get_current_stock_price(self.symbol))
+      print(type(self.qty))
+      print(type(qty))
+      self.qty -= int(qty)
+      return current_price * qty
 
   def get_current_price(self):
     current_price = get_current_stock_price(self.symbol)
@@ -54,5 +55,4 @@ class Transaction:
   @staticmethod
   def buy_stock(name, symbol, qty, type):
     # Returns a Transaction instance
-    qty = int(qty)
     return Transaction(name, symbol, qty, type)
