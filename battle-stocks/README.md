@@ -24,9 +24,9 @@ Our project is a stock trading simulator that allows trading stock using real-ti
 
 For our mvp, our application allows the user to create a portfolio, giving the option to purchase, sell, or plot stocks.
 
-The user is guided through a series of prompts. The first prompt requires the user to to enter a username for their stock portfolio. When the user enters a username, they can choose whether they want to use our app. If they choose yes, they are then given the option to either buy or sell stocks, as well as the option to quit the app entirely.
+The user is guided through a series of prompts. The first prompt requires the user to to enter a username for their stock portfolio. When the user enters a username, they can choose whether they want to use our app. If they choose yes, they are then given the option to either buy or sell stocks, plot their stock portfolio, as well as the option to quit the app entirely.
 
-They are automatically given an amount of $10,000. The user is required to purchase a stock before they can sell anything. Once a stock is in their portfolio, the user can then sell the stock. The monetary amount for the stock is then directly deposited into their account. The app will continue to loop the user into either buying or selling until they quit the application.
+They are automatically given an amount of $10,000. The user is required to purchase a stock before they can sell anything. Once a stock is in their portfolio, the user can then sell the stock. The monetary amount for the stock is then directly deposited into their account. The user can also plot the graph and will appear on the user's computer screen. The app will continue to loop the user into either buying or selling until they quit the application.
 
 ## Tools Used
 
