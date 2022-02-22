@@ -8,9 +8,15 @@ class Portfolio:
         self.portfolio_value = self.get_portfolio_value()
     
     def add_stock(self, transaction):
-        self.stocks.append(transaction)
-        self.held_stocks.append(transaction.name)
-        self.stock_shares[transaction.symbol] += transaction.qty
+        if transaction.name in self.held_stocks:
+            self.stocks.append(transaction)
+            self.held_stocks.append(transaction.name)
+            self.stock_shares[transaction.symbol] += transaction.qty
+        else:
+            self.stocks.append(transaction)
+            self.held_stocks.append(transaction.name)
+            self.stock_shares[transaction.symbol] = transaction.qty
+
 
     def remove_stock(self, transaction):
         # WIP
