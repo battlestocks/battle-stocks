@@ -9,10 +9,7 @@ class User:
         self.portfolio = Portfolio()
 
     def show_current_portfolio(self):
-        holding_stocks = {}
-        for stock in self.portfolio.stocks:
-            holding_stocks[stock.name] = stock.total_shares
-        return holding_stocks
+        return self.portfolio.stock_shares
 
     def lookup_stock():
         pass

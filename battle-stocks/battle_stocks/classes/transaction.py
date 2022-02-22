@@ -5,18 +5,18 @@ from battle_stocks.classes.plot import Plot
 
 
 class Transaction:
-  def __init__(self, symbol, qty, type):
-    self.type = type
+  def __init__(self, name, symbol, qty, type):
+    self.name = name
     self.symbol = symbol
-    self.qty = qty
+    self.qty = int(qty)
+    self.type = type
     self.purchased_price = self.get_current_price()
     self.purchased_date = datetime.datetime.now().date()
-    self.price_history = {}
+    self.price_history = []
 
   def sell_stock(self, qty):
       current_price = float(get_current_stock_price(self.symbol))
-      self.qty -= qty
-      self.sold_date = datetime.datetime.now().date()
+      self.qty -= int(qty)
       return current_price * qty
 
   def get_current_price(self):
@@ -28,7 +28,7 @@ class Transaction:
   
   def current_total_value(self):
     current_price = float(get_current_stock_price(self.symbol))
-    return current_price * self.qty
+    return current_price * int(self.qty)
 
   def get_price_history(self):
     data = get_historical_stock_price(self.symbol)
@@ -51,6 +51,6 @@ class Transaction:
 
 
   @staticmethod
-  def buy_stock(symbol, qty):
+  def buy_stock(name, symbol, qty, type):
     # Returns a Transaction instance
-    return Transaction(symbol, qty, type)
+    return Transaction(name, symbol, qty, type)

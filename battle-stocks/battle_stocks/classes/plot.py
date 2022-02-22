@@ -87,6 +87,7 @@ class Plot:
     ax.set_xlabel('Dates')
     ax.set_ylabel('Stock Price')
     for stock in portfolio:
+      stock.get_price_history()
       x = [date[0] for date in stock.price_history]
       y = [price[1] for price in stock.price_history]
 

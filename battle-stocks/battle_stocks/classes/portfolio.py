@@ -8,14 +8,38 @@ class Portfolio:
         self.portfolio_value = self.get_portfolio_value()
     
     def add_stock(self, transaction):
-        self.stocks.append(transaction)
-        self.held_stocks.append(transaction.name)
-        self.stock_shares[transaction.symbol] += transaction.qty
+        if transaction.name in self.held_stocks:
+            self.stocks.append(transaction)
+            self.held_stocks.append(transaction.name)
+            self.stock_shares[transaction.name] += transaction.qty
+        else:
+            self.stocks.append(transaction)
+            self.held_stocks.append(transaction.name)
+            self.stock_shares[transaction.name] = transaction.qty
+            print(self.stock_shares)
 
-    def remove_stock(self, transaction):
-        # WIP
-        pass
-    
+    def sell_shares(self, name, symbol, qty):
+        shares = int(qty)
+        value = 0
+        stock_to_sell = 0
+        current_amount = self.stock_shares[name]
+        if int(current_amount) < shares:
+            return 0
+
+        stock_transactions = [ stock for stock in self.stocks if stock.name == name ]
+        while stock_to_sell != shares:
+            for stock in stock_transactions:
+                if int(stock.qty) < int(shares):
+                    self.stock_shares[name] = int(self.stock_shares[name]) - shares
+                    value += stock.sell_stock(shares)
+                    stock_to_sell += shares
+                    self.held_stocks.remove(name)
+                else:
+                    self.stock_shares[name] = int(self.stock_shares[name]) - shares
+                    value += stock.sell_stock(shares)
+                    stock_to_sell += shares
+                   
+        return value
 
     def plot_portfolio(self):
         return Plot.plot_portfolio(self.stocks)
