@@ -16,8 +16,6 @@ class Transaction:
 
   def sell_stock(self, qty):
       current_price = float(get_current_stock_price(self.symbol))
-      print(type(self.qty))
-      print(type(qty))
       self.qty -= int(qty)
       return current_price * qty
 
