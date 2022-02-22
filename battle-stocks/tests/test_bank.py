@@ -19,4 +19,5 @@ def test_deposit():
   assert bank.get_balance() == expected
 
 def test_deposit():
-  
+  bank = Bank()
+  bank.deposit(
