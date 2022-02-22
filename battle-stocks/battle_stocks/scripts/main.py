@@ -38,6 +38,19 @@ def main():
                 user.bank.deposit(transaction_results) 
                 print(f'Congratulations! You have successfully sold {shares} shares of {stock_name} stock. Your current account balance is ${user.bank.get_balance()}')
 
+        if validated_b_s_q == 'D':
+            deposit_amount = Prompt.deposit_withdraw_prompt('deposit')
+            user.bank.deposit(deposit_amount)
+            print(f'Congratulations! You successfully deposited ${deposit_amount}! Your current account balance is ${user.bank.get_balance()}')
+
+        if validated_b_s_q == 'W':
+            withdraw_amount = Prompt.deposit_withdraw_prompt('withdraw')
+            if withdraw_amount <= user.bank.get_balance():
+                user.bank.withdraw(withdraw_amount)
+                print(f'Congratulations! You successfully withdrawed ${withdraw_amount}! Your current account balance is ${user.bank.get_balance()}')
+            else:
+                print(f'You do not have enough balance to widthdraw $ {withdraw_amount}')
+
         if validated_b_s_q == 'Q':
             Prompt.quit()
         validated_b_s_q = Prompt.continue_or_quit()
