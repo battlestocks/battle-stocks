@@ -1,5 +1,6 @@
 from battle_stocks.classes.bank import Bank
 
+
 def test_withdraw():
   bank = Bank()
   bank.withdraw(489.50)
@@ -18,6 +19,8 @@ def test_deposit():
   expected = 10455.68
   assert bank.get_balance() == expected
 
-def test_deposit():
+def test_deposit_2():
   bank = Bank()
-  bank.deposit(
+  bank.deposit(6880.14)
+  expected = 16880.14
+  assert bank.get_balance() == expected
