@@ -12,17 +12,10 @@ Please enter (y)es to start investing or (n)o to decline\n> ''')
         return validated.upper()
 
     @staticmethod
-    def validate_buy_sell_quit(user_input):
+    def validate_command(user_input, prompt):
         validated = user_input
-        while validated.upper() not in ['B', 'S', 'Q']:
-            validated = input('''
-Now that you are intersted, you can either buy or sell stocks!
-
-To buy stocks please enter: (b)uy
-To sell stocks please enter: (s)ell
-To quit please enter: (q)uit
-
-> ''')
+        while validated.upper() not in ['B', 'S', 'Q', 'D', 'W']:
+            validated = input(prompt)
         return validated.upper()
 
     @staticmethod
@@ -40,12 +33,12 @@ To quit please enter: (q)uit
         return validated.upper()
 
     @staticmethod
-    def validate_shares(user_input, prompt):
+    def validate_numbers(user_input, prompt):
         validated = user_input
         while True:
             try:
                 validated = float(validated)
                 break
             except:
-                validated = input(f'Please enter number for shares. {prompt}')
+                validated = input(prompt)
         return validated
