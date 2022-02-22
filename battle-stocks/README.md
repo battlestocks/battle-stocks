@@ -36,5 +36,5 @@ They are automatically given an amount of $10,000. The user is required to purch
 - InvisionApp (Wireframe)
 - BeautifulSoup (Web Scraping)
 - matplotlib (ploting)
-- pandas
-- Yahoo Finance (Web Scraping and live stock prices)
+- pandas (Data manipulation and analysis)
+- Yahoo Finance (Web Scraping and stock prices)
