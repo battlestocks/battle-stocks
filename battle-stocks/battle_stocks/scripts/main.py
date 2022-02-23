@@ -46,9 +46,9 @@ def main():
             withdraw_amount = Prompt.deposit_withdraw_prompt('withdraw')
             if withdraw_amount <= user.bank.get_balance():
                 user.bank.withdraw(withdraw_amount)
-                print(f'Congratulations! You successfully withdrawed ${withdraw_amount}! Your current account balance is ${user.bank.get_balance()}')
+                print(f'\nCongratulations! You successfully withdrawed ${withdraw_amount}! Your current account balance is ${user.bank.get_balance()}')
             else:
-                print(f'You do not have enough balance to widthdraw $ {withdraw_amount}')
+                print(f'\nYou do not have enough balance to widthdraw $ {withdraw_amount}')
 
         if validated_command == 'P':
             user.portfolio.plot_portfolio()
