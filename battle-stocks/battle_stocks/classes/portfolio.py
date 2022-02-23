@@ -47,8 +47,8 @@ class Portfolio:
     def get_portfolio_value(self):
         updated_value = 0
         for stock in self.stocks:
-             stock_current_total = stock.current_total_value()
-             updated_value += stock_current_total
+            stock_current_total = stock.current_total_value()
+            updated_value += stock_current_total
         return updated_value
 
     def gain_loss(self):
