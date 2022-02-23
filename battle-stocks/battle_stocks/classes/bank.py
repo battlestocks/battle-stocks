@@ -1,4 +1,3 @@
-from lib2to3.pgen2.token import BACKQUOTE
 from battle_stocks.utils.constants import STARTING_BANK
 
 class Bank:
