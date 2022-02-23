@@ -34,18 +34,20 @@ Please enter (y)es to start investing or (n)o to decline''')
         if validated == 'N':
             Prompt.quit()
         elif validated == 'Y':
-            return Prompt.buy_sell_or_quit()
+            return Prompt.command()
 
     @staticmethod
-    def buy_sell_or_quit():
-        buy_sell_quit = input('''
+    def command():
+        command_prompt = '''
 To buy stocks please enter: (b)uy
 To sell stocks please enter: (s)ell
+To deposit money please enter: (d)eposit
+To withdraw money please enter: (w)ithdraw
 To plot your portfolio please enter (p)lot
 To quit please enter: (q)uit
-
-> ''')
-        return InputValidation.validate_buy_sell_quit(buy_sell_quit)
+> '''
+        user_input = input(command_prompt)
+        return InputValidation.validate_command(user_input, command_prompt)
 
     @staticmethod
     def buy_stock_prompt():
@@ -57,15 +59,17 @@ To quit please enter: (q)uit
         validated_company_name = InputValidation.validate_company_name(company_name, company_name_prompt)
         shares_prompt = f'\nHow many shares of {validated_company_name} would you like to purchase?\n> '
         shares = input(shares_prompt)
-        validated_shares = InputValidation.validate_shares(shares, shares_prompt)
+        validated_shares = InputValidation.validate_numbers(shares, shares_prompt)
         return [validated_company_name, SYMBOL[validated_company_name], validated_shares]
 
     @staticmethod
     def continue_or_quit():
-        user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)continue or enter (q)uit to exit.\n> ')
-        if user_input == 'c':
-            return Prompt.buy_sell_or_quit()
-        else:
+        user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)ontinue or enter (q)uit to exit.\n> ')
+        while user_input.upper() not in ['C', 'Q']:
+            user_input = input('\nIf you would like to continue purchasing or selling stocks, Please enter (c)ontinue or enter (q)uit to exit.\n> ')
+        if user_input.upper() == 'C':
+            return Prompt.command()
+        elif user_input.upper() == 'Q':
             Prompt.quit()
 
     @staticmethod
@@ -75,10 +79,16 @@ To quit please enter: (q)uit
         validated_company_name = InputValidation.validate_company_name(company_name, company_name_prompt)
         shares_prompt = f'\n\nHow many shares of {company_name} would you like to sell?\n> '
         shares = input(shares_prompt)
-        validated_shares = InputValidation.validate_shares(shares, shares_prompt)
+        validated_shares = InputValidation.validate_numbers(shares, shares_prompt)
         return [validated_company_name, SYMBOL[validated_company_name], validated_shares]
 
     @staticmethod
+    def deposit_withdraw_prompt(option):
+        amount_prompt = f'How much do you want to {option}?\n> '
+        amount = input(amount_prompt)
+        validated_amount = InputValidation.validate_numbers(amount, amount_prompt)
+        return validated_amount
+
     def plot_portfolio(user):
         print(f'This is your current plotted graph for your stock portfolio:\n{user.portfolio.plot_portfolio()}\n')
         

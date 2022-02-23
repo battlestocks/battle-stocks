@@ -20,6 +20,14 @@ Our project is a stock trading simulator that allows trading stock using real-ti
 
 ![Project Planning](./images/project-plan.png)
 
+## Version 1.0.1 - 02/22/2022
+
+- Add deposit command and its functionality
+- Add withdraw command and its functionality
+- Add plot command and its functionality
+- Add unit tests
+- Add colors and legends to plot
+
 ## Version 1.0.0 - 02/19/2022
 
 For our mvp, our application allows the user to create a portfolio, giving the option to purchase, sell, or plot stocks.

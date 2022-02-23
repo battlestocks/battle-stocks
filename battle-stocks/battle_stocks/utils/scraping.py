@@ -10,7 +10,6 @@ def get_current_stock_price(symbol):
     results = soup.find('fin-streamer', class_='Fw(b) Fz(36px) Mb(-4px) D(ib)')
     return results.text
 
-# print(get_current_stock_price(SYMBOL['FACEBOOK']))
 
 def get_historical_stock_price(symbol):
     historical_data = []
@@ -32,5 +31,3 @@ def get_historical_stock_price(symbol):
             row.append(td.text)
         historical_data.append(row)
     return historical_data
-
-# get_historical_stock_price('AAPL')
