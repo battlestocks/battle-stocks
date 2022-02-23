@@ -1,6 +1,5 @@
 from battle_stocks.utils.constants import SYMBOL
 
-
 class InputValidation:
 
     @staticmethod
@@ -14,7 +13,7 @@ Please enter (y)es to start investing or (n)o to decline\n> ''')
     @staticmethod
     def validate_command(user_input, prompt):
         validated = user_input
-        while validated.upper() not in ['B', 'S', 'Q', 'D', 'W']:
+        while validated.upper() not in ['B', 'S', 'Q', 'D', 'W', 'P']:
             validated = input(prompt)
         return validated.upper()
 
@@ -29,7 +28,7 @@ Please enter (y)es to start investing or (n)o to decline\n> ''')
     def validate_company_name(user_input, prompt):
         validated = user_input
         while validated.upper() not in SYMBOL:
-            validated = input(f'{validated.upper()} is not available. {prompt}')
+            validated = input(f'\n{validated.upper()} is not available.\n\n {prompt}')
         return validated.upper()
 
     @staticmethod

@@ -37,7 +37,8 @@ class Portfolio:
                     self.stock_shares[name] = int(self.stock_shares[name]) - shares
                     value += stock.sell_stock(shares)
                     stock_to_sell += shares
-                   
+        if self.stock_shares[name] == 0:
+            self.held_stocks.remove(name)
         return value
 
     def plot_portfolio(self):
@@ -47,8 +48,8 @@ class Portfolio:
     def get_portfolio_value(self):
         updated_value = 0
         for stock in self.stocks:
-             stock_current_total = stock.current_total_value()
-             updated_value += stock_current_total
+            stock_current_total = stock.current_total_value()
+            updated_value += stock_current_total
         return updated_value
 
     def gain_loss(self):

@@ -75,6 +75,12 @@ class Plot:
 
   @staticmethod
   def plot_portfolio(portfolio, size=size.large, line_color=colors.green, face_color=colors.grey, edge_color=colors.black, marker=markers.small, line_style=line_styles.dashdot):
+    c = Colors()
+    color_list = []
+    color_names = [a for a in dir(c) if not a.startswith('__')]
+    for i in color_names:
+      color_list.append(c.__getattribute__(i))
+    
     # Figure settings
     fig = plt.figure(
       figsize=size, 
@@ -86,17 +92,23 @@ class Plot:
     ax.set_title(f'Stock Performance')
     ax.set_xlabel('Dates')
     ax.set_ylabel('Stock Price')
+    color_index = 0
     for stock in portfolio:
+      if color_index > len(color_names):
+        color_index = 0
       stock.get_price_history()
       x = [date[0] for date in stock.price_history]
       y = [price[1] for price in stock.price_history]
-
+      color_name = color_names[color_index]
       ax.plot( x, y,
-        color = line_color, 
+        color = color_name, 
         linestyle = line_style, 
         linewidth = 1.0,
-        marker = marker
+        marker = marker,
+        label=stock.name
         )
+      color_index += 1
+      ax.legend()
     plt.show()
     
 
