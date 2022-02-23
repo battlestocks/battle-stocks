@@ -37,7 +37,8 @@ class Portfolio:
                     self.stock_shares[name] = int(self.stock_shares[name]) - shares
                     value += stock.sell_stock(shares)
                     stock_to_sell += shares
-                   
+        if self.stock_shares[name] == 0:
+            self.held_stocks.remove(name)
         return value
 
     def plot_portfolio(self):
