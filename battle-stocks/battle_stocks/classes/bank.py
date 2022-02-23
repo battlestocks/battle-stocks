@@ -10,7 +10,7 @@ class Bank:
 
     def withdraw(self, amount):
         if self.balance < amount:
-            print('Not enough money, try another amount!')
+            print('\nNot enough money, try another amount!\n')
         else:
             self.balance -= amount
 

@@ -54,7 +54,7 @@ To quit please enter: (q)uit
         stock_list = []
         for stock in SYMBOL:
             stock_list.append(stock)
-        company_name_prompt = f'\nThis is the current list of stocks that are available for purchase: {stock_list}.\n\nFrom this list, please enter the stock you would like to buy.\n> '
+        company_name_prompt = f'This is the current list of stocks that are available for purchase: {stock_list}.\n\nFrom this list, please enter the stock you would like to buy.\n> '
         company_name = input(company_name_prompt)
         validated_company_name = InputValidation.validate_company_name(company_name, company_name_prompt)
         shares_prompt = f'\nHow many shares of {validated_company_name} would you like to purchase?\n> '
@@ -74,17 +74,17 @@ To quit please enter: (q)uit
 
     @staticmethod
     def sell_stock_prompt(user):
-        company_name_prompt = f'This is your current positions:\n{user.show_current_portfolio()}\n\nWhich stock would you like to sell?\n> '
+        company_name_prompt = f'\nThis is your current positions:\n{user.show_current_portfolio()}\n\nWhich stock would you like to sell?\n> '
         company_name = input(company_name_prompt)
         validated_company_name = InputValidation.validate_company_name(company_name, company_name_prompt)
-        shares_prompt = f'\n\nHow many shares of {company_name} would you like to sell?\n> '
+        shares_prompt = f'\nHow many shares of {company_name} would you like to sell?\n> '
         shares = input(shares_prompt)
         validated_shares = InputValidation.validate_numbers(shares, shares_prompt)
         return [validated_company_name, SYMBOL[validated_company_name], validated_shares]
 
     @staticmethod
     def deposit_withdraw_prompt(option):
-        amount_prompt = f'How much do you want to {option}?\n> '
+        amount_prompt = f'\nHow much do you want to {option}?\n> '
         amount = input(amount_prompt)
         validated_amount = InputValidation.validate_numbers(amount, amount_prompt)
         return validated_amount
