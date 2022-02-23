@@ -26,7 +26,6 @@ def get_historical_stock_price(symbol):
     tbody = soup.find('tbody')
     # looks like find_all only get 100 items
     trs = tbody.find_all('tr')
-    print(len(trs))
     for tr in trs:
         row = []
         for td in tr:
