@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "battle-stocks"
+version = "0.1.0"
+description = ""
+authors = ["brandonmizutani <bran2miz@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.4.1"
+beautifulsoup4 = "^4.10.0"
+requests = "^2.27.1"
+matplotlib = "^3.5.1"
+lxml = "^4.8.0"
+html5lib = "^1.1"
+colorama = "^0.4.4"
+pytest-cov = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
