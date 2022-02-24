@@ -94,4 +94,3 @@ To quit please enter: (q)uit
 
     def plot_portfolio(user):
         print(f'This is your current plotted graph for your stock portfolio:\n{user.portfolio.plot_portfolio()}\n')
-        
