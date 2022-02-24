@@ -58,7 +58,7 @@ unicode_backport = ["unicodedata2"]
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -375,7 +375,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "a4239ad0d592777031c4128343f6de0fbeb9dd62b2fbc2432bd2749f9762a286"
+content-hash = "b5d2f08c50942c7b3ee7d7be35995f9b56a853255fc2f3f59b33054f1c01da8e"
 
 [metadata.files]
 atomicwrites = [
