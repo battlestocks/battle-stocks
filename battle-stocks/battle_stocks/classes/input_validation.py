@@ -1,4 +1,5 @@
 from battle_stocks.utils.constants import SYMBOL
+from colorama import Fore
 
 class InputValidation:
 
@@ -28,7 +29,7 @@ Please enter (y)es to start investing or (n)o to decline\n> ''')
     def validate_company_name(user_input, prompt):
         validated = user_input
         while validated.upper() not in SYMBOL:
-            validated = input(f'\n{validated.upper()} is not available.\n\n {prompt}')
+            validated = input(Fore.RED + f'\n{validated.upper()} is not available.\n\n {prompt}')
         return validated.upper()
 
     @staticmethod
