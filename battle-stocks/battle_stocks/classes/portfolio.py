@@ -44,7 +44,6 @@ class Portfolio:
     def plot_portfolio(self):
         return Plot.plot_portfolio(self.stocks)
 
-
     def get_portfolio_value(self):
         updated_value = 0
         for stock in self.stocks:
