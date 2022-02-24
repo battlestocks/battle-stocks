@@ -46,3 +46,10 @@ They are automatically given an amount of $10,000. The user is required to purch
 - matplotlib (ploting)
 - pandas (Data manipulation and analysis)
 - Yahoo Finance (Web Scraping and stock prices)
+
+
+### Testing
+
+```sh
+pytest --cov=battle_stocks tests/
+```
