@@ -15,13 +15,13 @@ def test_main():
   assert expected != actual
 
 def test_validate_start_quit_yes():
-  validated = InputValidation.validate_start_quit('Y')
+  validated = InputValidation.validate_start_quit('y')
   expected = validated.upper()
   actual = 'Y'
   assert expected == actual
 
 def test_validate_start_quit_no():
-  validated = InputValidation.validate_start_quit('N')
+  validated = InputValidation.validate_start_quit('n')
   expected = validated.upper()
   actual = 'N'
   assert expected == actual
@@ -229,4 +229,3 @@ def test_deposit():
   expected = 500.00
   actual = float(validated_amount)
   assert actual == expected
-
