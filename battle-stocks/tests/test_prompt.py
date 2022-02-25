@@ -1,13 +1,6 @@
-from pickle import FALSE
 from battle_stocks.classes.input_validation import InputValidation
-from battle_stocks.classes.portfolio import Portfolio
-from battle_stocks.scripts.main import main
-from battle_stocks.classes.prompt import Prompt
 from battle_stocks.classes.user import User
-from battle_stocks.utils.validate_transaction import validate_transaction
 from colorama import Fore
-from battle_stocks.utils.constants import SYMBOL
-import sys
 
 def test_main():
   expected = 'b'
@@ -162,20 +155,6 @@ def test_company_name_facebook():
   expected = 'FACEBOOK'
   actual = validated.upper()
   assert actual == expected  
-
-# def test_not_company_name_():
-#   stock_list = {
-#     'APPLE': 'AAPL',
-#     'MICROSOFT': 'MSFT',
-#     'FACEBOOK': 'FB',
-# }
-#   prompt = Fore.GREEN + f'\nThis is the current list of stocks that are available for purchase: {stock_list}.\n\nFrom this list, please enter the stock you would like to buy.\n> '
-#   user_input = 'instagram'
-#   validated = InputValidation.validate_company_name(user_input, prompt)
-#   error_message = Fore.RED + f'\n{validated.upper()} is not available.\n\n {prompt}'
-#   expected = error_message
-#   actual = validated.upper()
-#   assert actual == expected
 
 def test_validate_numbers():
   stock_list = {
