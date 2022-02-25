@@ -1,4 +1,3 @@
-from ast import For
 from battle_stocks.utils.constants import SYMBOL
 from battle_stocks.classes.input_validation import InputValidation
 from battle_stocks.classes.colors import ColorPrompt
