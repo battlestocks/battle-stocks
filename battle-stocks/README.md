@@ -20,6 +20,11 @@ Our project is a stock trading simulator that allows trading stock using real-ti
 
 ![Project Planning](./images/project-plan.png)
 
+## Version 1.0.2 - 02/23/2022
+
+- Add colorama to alter text color
+- Add more testing to raise our test coverage to 80%
+
 ## Version 1.0.1 - 02/22/2022
 
 - Add deposit command and its functionality
@@ -46,3 +51,9 @@ They are automatically given an amount of $10,000. The user is required to purch
 - matplotlib (ploting)
 - pandas (Data manipulation and analysis)
 - Yahoo Finance (Web Scraping and stock prices)
+
+### Testing
+
+```sh
+pytest --cov=battle_stocks tests/
+```

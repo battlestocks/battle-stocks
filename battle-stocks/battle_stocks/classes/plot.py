@@ -110,37 +110,3 @@ class Plot:
       color_index += 1
       ax.legend()
     plt.show()
-    
-
-  ## WIP Stretch Goal
-  @staticmethod
-  def plot_portfolio_performance(portfolio, size=(15,8), line_color=colors.green, face_color=colors.grey, edge_color=colors.black, line_style=line_styles.dashdot, marker=markers.small):
-    # Figure settings
-    fig = plt.figure(
-      figsize=size, 
-      facecolor=face_color, 
-      edgecolor=edge_color
-      )
-
-    ax = plt.axes()
-    ax.set_title(f'Stock Performance')
-    ax.set_xlabel('Dates')
-    ax.set_ylabel('Stock Price')
-    
-    total_values = []
-    for stock in portfolio:
-      # dates
-      x = list(stock.price_history.keys())
-      x = [date.strftime('%m-%d-%Y') for date in x ]
-
-      # prices
-      while len(total_values) < len(x):
-        total_values.append(stock.current_total_value())
-
-      ax.plot( x, total_values,
-        color = line_color, 
-        linestyle = line_style, 
-        linewidth = 1.0,
-        marker = marker
-        )
-    plt.show()
